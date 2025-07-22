@@ -4,28 +4,33 @@
 
 / {
     chosen {
-        zmk,kscan = &kscan0;
+        zmk,kscan = &kscan_0; // Alterado para kscan_0
     };
-};
 
-&kscan {
-    // Definindo os pinos das COLUNAS para o lado ESQUERDO
-    col-gpios =
-        <&gpio0 21 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* col0 (seu '1') */
-        , <&gpio0 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* col1 (seu '2') */
-        , <&gpio0 16 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* col2 (seu '3') */
-        , <&gpio0 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* col3 (seu '4') */
-        , <&gpio0 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* col4 (seu '5') */
-        , <&gpio0 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* col5 (seu '6') */
-        , <&gpio0 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   /* col6 (seu '7') */
-        ;
+    // Adicione esta seção para definir o kscan se ele não estiver sendo definido corretamente.
+    // O nome 'kscan_0' é uma convenção comum em alguns setups ZMK/Zephyr.
+    kscan_0: kscan { // Definindo o nó kscan_0 com a label kscan
+        compatible = "zmk,kscan-gpio-matrix";
+        wakeup-source;
+        diode-direction = "col2row"; // ou "row2col" dependendo da sua fiação
 
-    // Definindo os pinos das LINHAS para o lado ESQUERDO
-    row-gpios =
-        <&gpio0 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>  /* row0 (seu '1') */
-        , <&gpio0 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)> /* row1 (seu '2') */
-        , <&gpio0 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>  /* row2 (seu '3') */
-        , <&gpio0 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>  /* row3 (seu '4') */
-        , <&gpio0 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>  /* row4 (seu '5') */
-        ;
+        // As definições de pinos que você já tem
+        col-gpios =
+            <&gpio0 21 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* col0 (seu '1') */
+            , <&gpio0 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* col1 (seu '2') */
+            , <&gpio0 16 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* col2 (seu '3') */
+            , <&gpio0 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* col3 (seu '4') */
+            , <&gpio0 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* col4 (seu '5') */
+            , <&gpio0 19 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* col5 (seu '6') */
+            , <&gpio0 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>   /* col6 (seu '7') */
+            ;
+
+        row-gpios =
+            <&gpio0 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>  /* row0 (seu '1') */
+            , <&gpio0 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)> /* row1 (seu '2') */
+            , <&gpio0 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>  /* row2 (seu '3') */
+            , <&gpio0 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>  /* row3 (seu '4') */
+            , <&gpio0 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>  /* row4 (seu '5') */
+            ;
+    };
 };
