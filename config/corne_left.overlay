@@ -8,7 +8,7 @@
     };
 };
 
-&kscan0 {
+&kscan {
     // Definindo os pinos das COLUNAS para o lado ESQUERDO
     col-gpios =
         <&gpio0 21 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  /* col0 (seu '1') */
